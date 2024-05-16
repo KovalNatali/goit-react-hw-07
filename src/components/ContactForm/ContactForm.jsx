@@ -3,16 +3,15 @@ import { Form, Label } from "./ContactForm.styled";
 import { useState } from "react";
 import { nanoid } from "nanoid";
 import { useSelector, useDispatch } from "react-redux";
-
-import { addContact } from "../../redux/contactsSlice";
-import { getFilterContacts } from "../../redux/contacts-selector";
+import { addContact } from "../../redux/contactsOps";
+import { itemsSelector } from "../../redux/contactsSlice";
 
 export const AddContastForm = () => {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
 
   const dispatch = useDispatch();
-  const contacts = useSelector(getFilterContacts);
+  const contacts = useSelector(itemsSelector);
 
   const handalCange = (e) => {
     e.target.name === "name" && setName(e.target.value);

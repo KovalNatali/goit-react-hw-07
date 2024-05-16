@@ -1,11 +1,15 @@
 import { TextField } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { filterContacts } from "../../redux/contactsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setFilter } from "../../redux/filterSlice";
+import { selectContactsFilter } from "../../redux/filterSlice";
 
 export const Filter = () => {
+  const filter = useSelector(selectContactsFilter);
+
   const dispatch = useDispatch();
+
   const handleChange = (e) => {
-    dispatch(filterContacts(e.target.value));
+    dispatch(setFilter(e.target.value));
   };
 
   return (
@@ -14,6 +18,8 @@ export const Filter = () => {
         id="outlined-basic"
         label="Find contacts"
         variant="outlined"
+        name="filter"
+        value={filter}
         onChange={handleChange}
       />
     </div>
